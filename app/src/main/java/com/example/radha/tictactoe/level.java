@@ -11,7 +11,7 @@ public class level extends AppCompatActivity {
     public void easy(View view)
     {
 
-        Intent intent = new Intent(this,Player2.class);
+        Intent intent = new Intent(this, OnePlayerEasy.class);
         startActivity(intent);
     }
 

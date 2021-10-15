@@ -11,8 +11,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".level"></activity>
         <activity android:name=".OnePlayerAI" />
-        <activity android:name=".Player2" />
-        <activity android:name=".Home2" />
+        <activity android:name=".OnePlayerEasy" />
+        <activity android:name=".Home" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,8 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".Home" />
+        <activity android:name=".TwoPlayer" />
     </application>
 
 </manifest>

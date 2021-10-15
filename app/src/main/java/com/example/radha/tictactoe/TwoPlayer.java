@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Main2Activity extends AppCompatActivity {
+public class TwoPlayer extends AppCompatActivity {
 
 
     int flag =0;
@@ -46,7 +46,7 @@ public class Main2Activity extends AppCompatActivity {
                     System.out.print(state[i]+" ");
                 }
                 int won=0;
-                TextView  msg = (TextView)findViewById(R.id.textView2);
+                TextView  msg = (TextView)findViewById(R.id.textView1);
 
                 for(int[] winning :winning){
                     if(state[winning[0]]!=2 && (state[winning[0]]==state[winning[1]]) && (state[winning[1]]==state[winning[2]]))
@@ -135,6 +135,6 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_one_player_easy);
     }
 }

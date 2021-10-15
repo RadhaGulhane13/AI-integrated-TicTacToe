@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public void play(View view)
     {
 
-        Intent intent = new Intent(this,Home2.class);
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 
@@ -25,10 +25,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-
 
             cross = (ImageView)findViewById(R.id.cross);
             circle = (ImageView)findViewById(R.id.circle);

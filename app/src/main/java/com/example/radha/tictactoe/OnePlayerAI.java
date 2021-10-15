@@ -279,7 +279,7 @@ public class OnePlayerAI extends AppCompatActivity {
     {
 
         int won=0;
-        TextView  msg = (TextView)findViewById(R.id.textView2);
+        TextView  msg = (TextView)findViewById(R.id.textView1);
 
         for(int[] winning :winning){
             if(state[winning[0]]!=0 && (state[winning[0]]==state[winning[1]]) && (state[winning[1]]==state[winning[2]]))

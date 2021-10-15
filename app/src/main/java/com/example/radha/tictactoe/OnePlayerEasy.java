@@ -8,9 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-public class Player2 extends AppCompatActivity {
+public class OnePlayerEasy extends AppCompatActivity {
 
     int flag =0;
 
@@ -143,7 +142,7 @@ public class Player2 extends AppCompatActivity {
             System.out.print(state[i]+" ");
         }
         int won=0;
-        TextView  msg = (TextView)findViewById(R.id.textView2);
+        TextView  msg = (TextView)findViewById(R.id.textView1);
 
         for(int[] winning :winning){
             if(state[winning[0]]!=2 && (state[winning[0]]==state[winning[1]]) && (state[winning[1]]==state[winning[2]]))
@@ -221,7 +220,7 @@ public class Player2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player2);
+        setContentView(R.layout.activity_two_player);
 
          img0 = (ImageView)findViewById(R.id.imageView31);
          img1 = (ImageView)findViewById(R.id.imageView61);
