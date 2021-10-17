@@ -7,21 +7,17 @@ import android.view.View;
 
 public class level extends AppCompatActivity {
 
-
-    public void easy(View view)
-    {
-
+    /* Redirects to the one player game with easy level. */
+    public void easy(View view) {
         Intent intent = new Intent(this, OnePlayerEasy.class);
         startActivity(intent);
     }
 
-    public void hard(View view)
-    {
-
-        Intent intent = new Intent(this,OnePlayerAI.class);
+    /* Redirects to the one player game with difficult level. */
+    public void hard(View view) {
+        Intent intent = new Intent(this, OnePlayerAI.class);
         startActivity(intent);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

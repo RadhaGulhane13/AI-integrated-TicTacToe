@@ -12,21 +12,17 @@ import java.util.Random;
 public class OnePlayerAI extends AppCompatActivity {
 
     int flag =0;
-
+    int total_move = 0;
     int active=1;
     int [] state = {0,0,0,0,0,0,0,0,0};
 
     int [][] winning = {{0,1,2}, {3,4,5}, {6,7,8}, {0,3,6}, {1,4,7}, {2,5,8}, {0,4,8}, {2,4,6}};
 
-
-
     ImageView img0,img1,img2,img3,img4,img5,img6,img7,img8;
 
     TextView player;
 
-
-
-
+    /* Adds move by computer by adding symbol on the grid. */
     public void setimg(int r)
     {
         switch(r)
@@ -58,22 +54,19 @@ public class OnePlayerAI extends AppCompatActivity {
             case 8:
                 img8.setImageResource(R.drawable.circle);
                 break;
-
-
         }
+        total_move++;
     }
 
+    /* Calculates winning possibility of user with existing moves presented on grid. */
     int winningposiblity()
     {
-
-
         int w1=0,w2=0,a,b,c;
         for(int i=0;i<3;i++)
         {
             a = i*3+0;
             b = i*3+1;
             c = i*3+2;
-
 
             if(state[a]+state[b]+state[c]==20 || state[a]+state[b]+state[c]==10)
             {
@@ -92,7 +85,6 @@ public class OnePlayerAI extends AppCompatActivity {
             {
                 w2++;
             }
-
 
         }
 
@@ -116,13 +108,11 @@ public class OnePlayerAI extends AppCompatActivity {
 
         }
 
-
-
         return w2-w1;
 
     }
 
-
+    /* helper function for isplayerwinning() */
     int anyof(int p,int i1,int i2,int j1,int j2,int k1,int k2)
     {
         int a = i1*3+i2;
@@ -137,6 +127,7 @@ public class OnePlayerAI extends AppCompatActivity {
 
             return 1;
         }
+
         if(state[b]==0 && state[a]==state[c] && state[a]==p)
         {
             state[b]=100;
@@ -145,6 +136,7 @@ public class OnePlayerAI extends AppCompatActivity {
             //cout<<"Computer's move : "<<j1*3+j2+1<<endl;
             return 1;
         }
+
         if(state[c]==0 && state[a]==state[b] && state[b]==p)
         {
             state[c]=100;
@@ -156,9 +148,11 @@ public class OnePlayerAI extends AppCompatActivity {
         return 0;
     }
 
+    /* Detects if any plauer is winning. */
     int isplayerwinning(int player) {
 
-        if (anyof(player, 0, 0, 1, 1, 2, 2) == 1 || anyof(player, 0, 2, 1, 1, 2, 0) == 1) {
+        if (anyof(player, 0, 0, 1, 1, 2, 2) == 1 ||
+                anyof(player, 0, 2, 1, 1, 2, 0) == 1) {
             return 1;
         }
 
@@ -176,18 +170,19 @@ public class OnePlayerAI extends AppCompatActivity {
 
         return 0;
 
-
     }
 
+    /*
+    * Computer will play next move and it will use heuristic approach to identify best move
+    * against the user.
+    */
     public void play()
     {
-
         if(flag==1) {
             if (isplayerwinning(100) == 1 || isplayerwinning(10) == 1) {
                 flag=0;
                 return;
             }
-
 
             int value=-8,a=0,b=0;
             for(int i=0;i<3;i++)
@@ -200,7 +195,6 @@ public class OnePlayerAI extends AppCompatActivity {
                     {
 
                         state[k]=100;
-
 
                         int heuristic=winningposiblity();
 
@@ -216,26 +210,17 @@ public class OnePlayerAI extends AppCompatActivity {
                 }
             }
 
-
-
             int c = a*3+b;
             state[c]=100;
             setimg(c);
             player.setText("Player 1");
             flag = 0;
-
-
         }
-
-
     }
-
-
 
     public void DropIn(View view)
     {
         if(active==1) {
-
                 if (flag == 0) {
                     ImageView counter = (ImageView) view;
                     int a = Integer.parseInt(counter.getTag().toString());
@@ -245,12 +230,9 @@ public class OnePlayerAI extends AppCompatActivity {
                         player.setText("Player 2");
                         state[a] = 10;
                         flag = 1;
+                        total_move++;
                     }
-
-
                 }
-
-
 
             if(iswin()!= 1)
             {
@@ -265,30 +247,25 @@ public class OnePlayerAI extends AppCompatActivity {
                     }
                 }, 1000);
 
-
             }
 
         }
 
-
     }
 
-
-
+    /* Detects if any player has won the game. */
     public int iswin()
     {
-
         int won=0;
         TextView  msg = (TextView)findViewById(R.id.textView1);
 
         for(int[] winning :winning){
-            if(state[winning[0]]!=0 && (state[winning[0]]==state[winning[1]]) && (state[winning[1]]==state[winning[2]]))
+            if(state[winning[0]]!=0 && (state[winning[0]]==state[winning[1]]) &&
+                    (state[winning[1]]==state[winning[2]]))
             {
                 won=1;
                 if(state[winning[0]]==10)
                 {
-
-
                     player.setText("Player 1 has won !!!");
                     active=0;
 
@@ -313,23 +290,24 @@ public class OnePlayerAI extends AppCompatActivity {
         return won;
     }
 
+    /* Verifies if draw condition. */
     public boolean istie()
     {
-        for(int i=0;i<9;i++)
-        {
-            if(state[i]==0)
-            {
-                return false;
-            }
-        }
-        return true;
+        return total_move == 9;
+//        for(int i=0;i<9;i++)
+//        {
+//            if(state[i]==0)
+//            {
+//                return false;
+//            }
+//        }
+//        return true;
     }
 
-
-
+    /* Clears the grid by removing all moves on click of Restart button. */
     public void Restart(View view)
     {
-
+        total_move = 0;
         active=1;
         for(int i=0;i<9;i++)
         {
