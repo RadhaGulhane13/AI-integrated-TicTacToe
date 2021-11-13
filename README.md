@@ -6,6 +6,10 @@ Tic Tac Toe is a famous two-player game usually played by young children as part
 ## How to play
 It is a famous two-player game that is played on a three-by-three grid with X or O. Each player will get a chance to mark the cell spaces three-by-three grid. The player who can place his marks in a horizontal, vertical, or diagonal row will succeed.
 
+## What's New
+With the functionality of providing a single player feature where the computer will be the 2nd player, there are two levels: easy and difficult. 
+In the difficult level option, the program uses Heuristic search in Artificial Intelligence which makes it capable of playing best moves for 255168 combinations of games. In this case,  it becomes difficult for a player to bit the computer.
+
 ## Algorithm
 It is very simple to build Tic Tac Toe for the two-player feature as it requires just track the marked cells and success scenarios. While the one-player approach requires an algorithm that will decide the next move by the computer against the user. I have made use of randomized moves for an easy level. Increasing the difficulty level, I use the heuristic approach which will find out the best move against the user. 
 
